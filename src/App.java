@@ -1,4 +1,5 @@
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 import org.w3c.dom.ranges.Range;
@@ -28,6 +29,11 @@ public class App {
         System.out.println("mcd(2, 3) = " + ejercicio4(2, 3));
         System.out.println("mcd(2, 3) = " + ejercicio4(1, 3));
         System.out.println("mcd(2, 4) = " + ejercicio4(2, 4));
+
+        System.out.println("\n# Ejercicio 5");
+        System.out.println("1: "   + ejercicio5(1));
+        System.out.println("3: "   + ejercicio5(3));
+        System.out.println("371: " + ejercicio5(371));
     }
 
     
@@ -93,8 +99,13 @@ public class App {
     }
 
 
-    public static void ejercicio5() {
+    public static boolean ejercicio5(int number) {
+        var digits = Arrays.stream(Integer.toString(number)
+                           .split(""))
+                           .mapToInt(Integer::parseInt);
 
+        var sum_of_cubes = digits.map(a -> a*a*a).sum();
+        return number == sum_of_cubes;
     }
 
 
