@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Stack;
 import java.util.stream.IntStream;
 
@@ -46,7 +47,7 @@ public class App {
         System.out.println("100: " + ejercicio7(100));
         System.out.println("1: "   + ejercicio7(1));
 
-        System.out.println("\n# Ejercicio 7");
+        System.out.println("\n# Fibonacci recursivo");
         System.out.println("0: "   + fibonacci(0));
         System.out.println("1: "   + fibonacci(1));
         System.out.println("2: "   + fibonacci(2));
@@ -54,6 +55,15 @@ public class App {
         System.out.println("10: "  + fibonacci(10));
         System.out.println("13: "  + fibonacci(13));
         System.out.println("20: "  + fibonacci(20));
+
+        System.out.println("\n# Fibonacci dinámico");
+        System.out.println("0: "   + fibonacci_dynamic(0));
+        System.out.println("1: "   + fibonacci_dynamic(1));
+        System.out.println("2: "   + fibonacci_dynamic(2));
+        System.out.println("5: "   + fibonacci_dynamic(5));
+        System.out.println("10: "  + fibonacci_dynamic(10));
+        System.out.println("13: "  + fibonacci_dynamic(13));
+        System.out.println("20: "  + fibonacci_dynamic(20));
 
     }
 
@@ -191,5 +201,30 @@ public class App {
         else {
             return (fibonacci(n - 1) + fibonacci(n - 2));
         }        
+    }
+
+
+    static HashMap<Integer, Integer> fn = new HashMap<>();
+    
+    public static int fibonacci_dynamic(int n) {
+        if (fn.size() == 0) {
+            fn.put(0, 0);
+            fn.put(1, 1);
+        }
+        if (n == 0) {
+            return 0;
+        }
+        if (n == 1) {
+            return 1;
+        } 
+
+        if (fn.containsKey(n)) {
+            return fn.get(n - 1) + fn.get(n - 2);
+        }
+        else {
+            var actual = fibonacci_dynamic(n - 1) + fibonacci_dynamic(n - 2);
+            fn.put(n, actual);  
+            return actual;
+        }
     }
 }
