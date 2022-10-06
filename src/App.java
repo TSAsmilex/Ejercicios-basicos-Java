@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Stack;
 import java.util.stream.IntStream;
 
 public class App {
@@ -35,6 +37,15 @@ public class App {
         System.out.println("\n# Ejercicio 6");
         System.out.println("patata -> " + ejercicio6("patata"));
         System.out.println("Armstrong -> " + ejercicio6("Armstrong"));
+
+        System.out.println("\n# Ejercicio 7");
+        System.out.println("2: "   + ejercicio7(2));
+        System.out.println("5: "   + ejercicio7(5));
+        System.out.println("10: "  + ejercicio7(10));
+        System.out.println("13: "  + ejercicio7(13));
+        System.out.println("100: " + ejercicio7(100));
+        System.out.println("1: "   + ejercicio7(1));
+
     }
 
     
@@ -122,7 +133,42 @@ public class App {
     }
 
 
-    public static void ejercicio7() {
+    public static int ejercicio7(int number) {
+        // 2, 3, 5. Calcular el mínimo número de sumas para las que, dado n, 
+        // se tiene que la suma de dichos números = n.
+        
+        Stack<Integer> stack = new Stack<>();
+        stack.push(2);
+        stack.push(3);
+        stack.push(5);
+        
+        ArrayList<Integer> packets = new ArrayList<>();
 
+        try {
+            while (!stack.empty()) {
+                var current = stack.peek();
+                
+                if (current <= number) {         // Greedy -> meter el más grande siempre 
+                    packets.add(current);
+                    number = number - current;
+
+                    if (number == 0) {      // Hemos terminado; han entrado justos.
+                        stack.clear();
+                    }
+                }
+                else {    
+                    stack.pop();
+                }
+            }
+
+            if (number < 0 || packets.size() == 0) {
+                throw (new ArithmeticException("No podemos suplir " + number + " con un número de paquetes exacto."));
+            }
+        }
+        catch (ArithmeticException e) { 
+            System.out.println(e);
+        }
+
+        return packets.size();
     }
 }
