@@ -1,8 +1,5 @@
-import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.stream.IntStream;
-
-import org.w3c.dom.ranges.Range;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -34,6 +31,10 @@ public class App {
         System.out.println("1: "   + ejercicio5(1));
         System.out.println("3: "   + ejercicio5(3));
         System.out.println("371: " + ejercicio5(371));
+
+        System.out.println("\n# Ejercicio 6");
+        System.out.println("patata -> " + ejercicio6("patata"));
+        System.out.println("Armstrong -> " + ejercicio6("Armstrong"));
     }
 
     
@@ -100,6 +101,7 @@ public class App {
 
 
     public static boolean ejercicio5(int number) {
+        // Separar el número en dígitos
         var digits = Arrays.stream(Integer.toString(number)
                            .split(""))
                            .mapToInt(Integer::parseInt);
@@ -109,8 +111,14 @@ public class App {
     }
 
 
-    public static void ejercicio6() {
+    public static String ejercicio6(String s) {
+        String result = new String();
 
+        for (int i = s.length()-1; i >= 0; i--) {
+            result += s.charAt(i);
+        }
+
+        return result;
     }
 
 
