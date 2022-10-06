@@ -46,6 +46,15 @@ public class App {
         System.out.println("100: " + ejercicio7(100));
         System.out.println("1: "   + ejercicio7(1));
 
+        System.out.println("\n# Ejercicio 7");
+        System.out.println("0: "   + fibonacci(0));
+        System.out.println("1: "   + fibonacci(1));
+        System.out.println("2: "   + fibonacci(2));
+        System.out.println("5: "   + fibonacci(5));
+        System.out.println("10: "  + fibonacci(10));
+        System.out.println("13: "  + fibonacci(13));
+        System.out.println("20: "  + fibonacci(20));
+
     }
 
     
@@ -170,5 +179,17 @@ public class App {
         }
 
         return packets.size();
+    }
+
+    public static int fibonacci(int n) {
+        if (n == 0) {
+            return 0;
+        }
+        else if (n == 1) {
+            return 1;
+        }
+        else {
+            return (fibonacci(n - 1) + fibonacci(n - 2));
+        }        
     }
 }
